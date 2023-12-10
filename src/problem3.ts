@@ -1,7 +1,7 @@
 // Write a JavaScript/TypeScript function that reverses a given string... join the reversed characters with an underscore.
 // Using decorator
 
-function split(
+function p3_split(
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor
@@ -17,7 +17,7 @@ function split(
   };
 }
 
-function reverse(
+function p3_reverse(
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor
@@ -31,7 +31,7 @@ function reverse(
   };
 }
 
-function join(char: string) {
+function p3_join(char: string) {
   return function (
     target: any,
     propertyKey: string,
@@ -47,10 +47,10 @@ function join(char: string) {
   };
 }
 
-class StringManager {
-  @split
-  @reverse
-  @join("_")
+class p3_StringManager {
+  @p3_split
+  @p3_reverse
+  @p3_join("_")
   print(str: string) {
     // SPLIT
     // REVERSE
@@ -59,5 +59,5 @@ class StringManager {
   }
 }
 
-const stringManager = new StringManager();
+const p3_stringManager = new p3_StringManager();
 stringManager.print("hello");

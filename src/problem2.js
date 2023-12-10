@@ -1,5 +1,5 @@
 "use strict";
-// Write a JavaScript/TypeScript function that reverses a given string... join the reversed characters with an underscore.
+// Write a JavaScript/TypeScript function that reverses a given string
 // Using decorator
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-function split(target, propertyKey, descriptor) {
+function p2_split(target, propertyKey, descriptor) {
     const originalMethod = descriptor.value;
     descriptor.value = function (...args) {
         // args[0] = args[0].split("");
@@ -17,7 +17,7 @@ function split(target, propertyKey, descriptor) {
         originalMethod.apply(this, [argSplitted]);
     };
 }
-function reverse(target, propertyKey, descriptor) {
+function p2_reverse(target, propertyKey, descriptor) {
     const originalMethod = descriptor.value;
     descriptor.value = function (...args) {
         const [arg] = args;
@@ -25,17 +25,15 @@ function reverse(target, propertyKey, descriptor) {
         originalMethod.apply(this, [argSplitted]);
     };
 }
-function join(char) {
-    return function (target, propertyKey, descriptor) {
-        const originalMethod = descriptor.value;
-        descriptor.value = function (...args) {
-            const [arg] = args;
-            const argSplitted = arg.join(char);
-            originalMethod.apply(this, [argSplitted]);
-        };
+function p2_join(target, propertyKey, descriptor) {
+    const originalMethod = descriptor.value;
+    descriptor.value = function (...args) {
+        const [arg] = args;
+        const argSplitted = arg.join("");
+        originalMethod.apply(this, [argSplitted]);
     };
 }
-class StringManager {
+class p2_StringManager {
     print(str) {
         // SPLIT
         // REVERSE
@@ -44,9 +42,9 @@ class StringManager {
     }
 }
 __decorate([
-    split,
-    reverse,
-    join("_")
-], StringManager.prototype, "print", null);
-const stringManager = new StringManager();
+    p2_split,
+    p2_reverse,
+    p2_join
+], p2_StringManager.prototype, "print", null);
+const p2_stringManager = new p2_StringManager();
 stringManager.print("hello");
