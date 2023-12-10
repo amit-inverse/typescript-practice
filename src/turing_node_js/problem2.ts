@@ -1,7 +1,7 @@
-// Write a JavaScript/TypeScript function that reverses a given string... join the reversed characters with an underscore.
+// Write a JavaScript/TypeScript function that reverses a given string
 // Using decorator
 
-function p3_split(
+function p2_split(
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor
@@ -17,7 +17,7 @@ function p3_split(
   };
 }
 
-function p3_reverse(
+function p2_reverse(
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor
@@ -31,26 +31,24 @@ function p3_reverse(
   };
 }
 
-function p3_join(char: string) {
-  return function (
-    target: any,
-    propertyKey: string,
-    descriptor: PropertyDescriptor
-  ) {
-    const originalMethod = descriptor.value;
+function p2_join(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
 
-    descriptor.value = function (...args: any[]) {
-      const [arg] = args;
-      const argSplitted = arg.join(char);
-      originalMethod.apply(this, [argSplitted]);
-    };
+  descriptor.value = function (...args: any[]) {
+    const [arg] = args;
+    const argSplitted = arg.join("");
+    originalMethod.apply(this, [argSplitted]);
   };
 }
 
-class p3_StringManager {
-  @p3_split
-  @p3_reverse
-  @p3_join("_")
+class p2_StringManager {
+  @p2_split
+  @p2_reverse
+  @p2_join
   print(str: string) {
     // SPLIT
     // REVERSE
@@ -59,5 +57,5 @@ class p3_StringManager {
   }
 }
 
-const p3_stringManager = new p3_StringManager();
-stringManager.print("hello");
+const p2_stringManager = new p2_StringManager();
+p2_stringManager.print("hello");
